@@ -36,7 +36,7 @@ podem estar desatualizados.
 ## Limpeza no logout
 
 `purgeServiceWorkerCaches()` (em
-[`service-worker-registrar.tsx`](../../components/pwa/service-worker-registrar.tsx))
+[`service-worker-registrar.tsx`](../../src/frontend/components/pwa/service-worker-registrar.tsx))
 manda `PURGE_CACHES` ao service worker, que apaga todos os caches. Deve ser
 chamado no logout, quando ele existir — nada do usuário anterior sobrevive no
 aparelho.
@@ -58,7 +58,7 @@ Sincronizar saldo, extrato ou qualquer leitura continua fora de cogitação.
 
 ## Instalação
 
-- **Manifest**: [`app/manifest.ts`](../../app/manifest.ts), servido em
+- **Manifest**: [`src/app/manifest.ts`](../../src/app/manifest.ts), servido em
   `/manifest.webmanifest` — `display: standalone`, `orientation: portrait`,
   `lang: pt-BR`, `theme_color` e `background_color` no azul escuro da marca.
 - **Ícones**: gerados por `npm run generate:icons`
@@ -77,7 +77,7 @@ Sincronizar saldo, extrato ou qualquer leitura continua fora de cogitação.
 ## Registro
 
 O service worker só é registrado em produção
-([`ServiceWorkerRegistrar`](../../components/pwa/service-worker-registrar.tsx)).
+([`ServiceWorkerRegistrar`](../../src/frontend/components/pwa/service-worker-registrar.tsx)).
 Em desenvolvimento, um SW ativo mascara alteração de código e atrapalha o
 diagnóstico.
 

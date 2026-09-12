@@ -1,14 +1,14 @@
 # Arquitetura do agente financeiro
 
 > Nada da IA está implementado. O que existe na Etapa 1 é o contrato:
-> `lib/ai/provider.ts`, `lib/ai/tools.ts`, `lib/ai/registry.ts` e os testes em
+> `src/backend/ai/provider.ts`, `src/backend/ai/tools.ts`, `src/backend/ai/registry.ts` e os testes em
 > `tests/unit/ai-tools.test.ts`.
 
 ## Regra que não se negocia
 
 **O modelo nunca executa SQL.** Não recebe conexão, não recebe query, não recebe
 nome de tabela. Ele pode apenas pedir uma das ferramentas declaradas em
-`lib/ai/tools.ts`, e o servidor decide se atende.
+`src/backend/ai/tools.ts`, e o servidor decide se atende.
 
 Na primeira versão o agente é **somente leitura**. Toda ferramenta carrega
 `mutates: false`, e um teste falha se alguém mudar isso.
@@ -43,7 +43,7 @@ tivesse bug, o Postgres continuaria limitando o alcance ao dono dos dados.
 ```
 Postgres (RLS)
       ↓
-lib/calculations/*        ← a matemática acontece aqui, testada
+src/backend/domain/calculations/*        ← a matemática acontece aqui, testada
       ↓
 resultado estruturado
       ↓
@@ -70,7 +70,7 @@ errada, sem aviso. Modelo de linguagem não é calculadora — e aqui não preci
 
 ## Contexto enviado ao modelo
 
-Somente agregados, no formato de `FinancialContext` (`types/ai.ts`): mês de
+Somente agregados, no formato de `FinancialContext` (`src/shared/types/ai.ts`): mês de
 referência, moeda, saldo, receitas, despesas e totais por categoria.
 
 Nunca vão para o modelo:
@@ -88,7 +88,7 @@ interface FinancialAIProvider {
 }
 ```
 
-`lib/ai/registry.ts` resolve o provedor a partir de `AI_PROVIDER`. Nenhum
+`src/backend/ai/registry.ts` resolve o provedor a partir de `AI_PROVIDER`. Nenhum
 fornecedor está registrado hoje — `resolveAIProvider()` lança
 `AIProviderNotConfiguredError`, de propósito. Trocar de provedor (ou rodar um
 modelo local) é implementar a interface e registrar.

@@ -17,7 +17,7 @@ entram em migrations próprias, quando cada área for implementada.
 2. Criar o projeto no Supabase e preencher `.env.local`.
 3. `npx supabase link --project-ref <ref>`
 4. `npx supabase db push`
-5. `npm run db:types` para regenerar `types/database.ts`.
+5. `npm run db:types` para regenerar `src/shared/types/database.ts`.
 6. Rodar os testes de RLS (`tests/integration/`) antes de considerar pronto.
 
 ## Regras

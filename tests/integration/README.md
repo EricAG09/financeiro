@@ -25,7 +25,7 @@ RLS — o teste precisa afirmar exatamente isso, não apenas "não deu erro".
 
 ## Testes de autenticação
 
-- sessão expirada é renovada pelo `proxy.ts`;
+- sessão expirada é renovada pelo `src/proxy.ts`;
 - rota protegida sem sessão redireciona para `/entrar`;
 - `getUser()` recusa cookie adulterado;
 - mensagem de erro não revela se o e-mail existe na base.

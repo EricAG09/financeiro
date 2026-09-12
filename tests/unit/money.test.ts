@@ -6,8 +6,8 @@ import {
   splitCents,
   sumCents,
   toCents,
-} from "@/lib/finance/money";
-import { parseCurrencyToCents } from "@/lib/validation/parse-money";
+} from "@/backend/domain/money";
+import { parseCurrencyToCents } from "@/backend/validation/parse-money";
 
 describe("aritmética em centavos", () => {
   it("não acumula erro de ponto flutuante", () => {

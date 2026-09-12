@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { aiToolNames, aiTools } from "@/lib/ai/tools";
+import { aiToolNames, aiTools } from "@/backend/ai/tools";
 
 /**
  * Testes de segurança do agente.

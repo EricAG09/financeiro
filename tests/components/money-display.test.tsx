@@ -1,6 +1,6 @@
 import { render, screen } from "@testing-library/react";
 import { describe, expect, it } from "vitest";
-import { MoneyDisplay } from "@/components/finance/money-display";
+import { MoneyDisplay } from "@/frontend/components/finance/money-display";
 
 describe("MoneyDisplay", () => {
   it("formata centavos em real brasileiro", () => {

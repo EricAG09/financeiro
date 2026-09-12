@@ -4,7 +4,7 @@ Sem dados de seed até aqui — e nenhum dado financeiro fictício será adicion
 
 O que faz sentido semear quando o banco existir:
 
-- categorias padrão de `constants/categories.ts`, criadas para cada novo usuário
+- categorias padrão de `src/shared/constants/categories.ts`, criadas para cada novo usuário
   (preferencialmente por trigger, não por script de seed);
 - nada mais.
 

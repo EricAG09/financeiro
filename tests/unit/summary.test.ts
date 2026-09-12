@@ -1,6 +1,9 @@
 import { describe, expect, it } from "vitest";
-import { buildMonthlySummary, expensesByCategory } from "@/lib/calculations/summary";
-import type { Transaction } from "@/types/finance";
+import {
+  buildMonthlySummary,
+  expensesByCategory,
+} from "@/backend/domain/calculations/summary";
+import type { Transaction } from "@/shared/types/finance";
 
 function makeTransaction(
   overrides: Partial<Transaction> & Pick<Transaction, "id">,

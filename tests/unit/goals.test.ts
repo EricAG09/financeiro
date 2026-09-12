@@ -1,6 +1,6 @@
 import { describe, expect, it } from "vitest";
-import { calculateGoalProgress } from "@/lib/calculations/goals";
-import type { FinancialGoal } from "@/types/goals";
+import { calculateGoalProgress } from "@/backend/domain/calculations/goals";
+import type { FinancialGoal } from "@/shared/types/goals";
 
 function makeGoal(overrides: Partial<FinancialGoal> = {}): FinancialGoal {
   return {

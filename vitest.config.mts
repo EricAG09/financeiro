@@ -4,7 +4,7 @@ import { resolve } from "node:path";
 export default defineConfig({
   resolve: {
     alias: {
-      "@": resolve(import.meta.dirname, "."),
+      "@": resolve(import.meta.dirname, "src"),
     },
   },
   oxc: {
@@ -19,7 +19,7 @@ export default defineConfig({
       provider: "v8",
       reporter: ["text", "html"],
       // O núcleo financeiro precisa de cobertura real; UI é verificada por amostragem.
-      include: ["lib/calculations/**", "lib/finance/**", "lib/validation/**"],
+      include: ["src/backend/domain/**", "src/backend/validation/**"],
     },
   },
 });

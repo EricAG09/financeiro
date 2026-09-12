@@ -17,23 +17,41 @@ de usuário.
 ## Inegociáveis
 
 1. **Dinheiro em centavos inteiros** (`number` no código, `bigint` no banco).
-   Nunca ponto flutuante. Formatação só em `lib/format/currency.ts`, exibição só
+   Nunca ponto flutuante. Formatação só em `src/frontend/lib/format/currency.ts`, exibição só
    via `MoneyDisplay`.
 2. **RLS na mesma migration que cria a tabela.** Nunca "depois".
 3. **Sem `any`.** Sem `eslint-disable` para calar um erro. Sem afrouxar o
    TypeScript para o build passar.
 4. **Segredo nunca chega ao browser.** `SUPABASE_SERVICE_ROLE_KEY` e chave de IA
-   são server-only, e o ESLint bloqueia o import em `components/**` e `hooks/**`.
+   são server-only, e o ESLint bloqueia o import em `src/frontend/**`.
 5. **Nada de dado financeiro fictício** em código, seed ou tela.
 6. **A IA não executa SQL** e, nesta versão, não altera nada.
 7. **Sem cache de dado financeiro** no service worker.
 
+## Onde fica cada coisa
+
+Todo o código vive em `src/`, em três camadas — ver [`src/README.md`](src/README.md).
+
+| Se o arquivo…                               | Vai para        |
+| ------------------------------------------- | --------------- |
+| desenha alguma coisa                        | `src/frontend/` |
+| faz conta, valida entrada ou fala com banco | `src/backend/`  |
+| é só tipo, constante ou configuração        | `src/shared/`   |
+| é uma rota                                  | `src/app/`      |
+
+Quem pode importar quem (o ESLint aplica):
+
+```
+frontend → backend/domain · frontend → shared · backend → shared
+backend ✗ frontend        · shared ✗ qualquer um
+```
+
 ## Convenções
 
-- Regra financeira vive em `lib/calculations/`, é pura e tem teste.
+- Regra financeira vive em `src/backend/domain/calculations/`, é pura e tem teste.
 - Componente não faz I/O nem conta.
-- Schema de validação em `schemas/`, usado no cliente **e** no servidor.
-- Nenhum hexadecimal em componente: use token de `app/globals.css`.
+- Schema de validação em `src/backend/validation/schemas/`, usado no cliente **e** no servidor.
+- Nenhum hexadecimal em componente: use token de `src/frontend/styles/globals.css`.
 - Mobile-first: projete a tela de 360px primeiro; o desktop acrescenta.
 - Toda lista tem estado vazio, de carregamento e de erro.
 - `getUser()`, nunca `getSession()`, para qualquer decisão.

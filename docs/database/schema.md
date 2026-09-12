@@ -35,7 +35,7 @@ editável é a origem clássica de divergência.
 
 ### `transaction_categories`
 
-Catálogo por usuário, semeado a partir de `constants/categories.ts`.
+Catálogo por usuário, semeado a partir de `src/shared/constants/categories.ts`.
 Único por `(user_id, slug)`.
 
 `id`, `user_id`, `slug`, `label`, `kind`, `icon`
@@ -84,7 +84,7 @@ O desenho acima existe para responder rápido a:
 - comparativo com o mês anterior: mesma consulta, outro intervalo;
 - contas a vencer: `recurring_transactions` ativas com `day_of_month` à frente.
 
-Todas são feitas em SQL ou por funções puras de `lib/calculations/`, nunca pelo
+Todas são feitas em SQL ou por funções puras de `src/backend/domain/calculations/`, nunca pelo
 modelo de IA.
 
 ## Pontos a decidir antes das migrations finais

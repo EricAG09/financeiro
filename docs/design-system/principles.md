@@ -15,7 +15,7 @@ Isso se traduz em cinco decisões concretas:
 
 ## Tokens
 
-Definidos em [`app/globals.css`](../../app/globals.css). **Nenhum componente
+Definidos em [`src/frontend/styles/globals.css`](../../src/frontend/styles/globals.css). **Nenhum componente
 escreve hexadecimal.** Se um valor não existe como token, o token é que está
 faltando.
 
@@ -54,7 +54,7 @@ largura fixa — sem isso, colunas de números dançam.
 
 ## Componentes
 
-### Primitivas — `components/ui/`
+### Primitivas — `src/frontend/components/ui/`
 
 Vindas do shadcn/ui (base Radix), copiadas para o repositório e mantidas por nós:
 

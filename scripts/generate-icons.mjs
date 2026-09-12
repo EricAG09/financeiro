@@ -195,8 +195,8 @@ const TARGETS = [
   { path: "public/icons/icon-512.png", size: 512, maskable: false },
   { path: "public/icons/maskable-512.png", size: 512, maskable: true },
   { path: "public/icons/apple-touch-icon.png", size: 180, maskable: true },
-  { path: "app/icon.png", size: 64, maskable: false },
-  { path: "app/apple-icon.png", size: 180, maskable: true },
+  { path: "src/app/icon.png", size: 64, maskable: false },
+  { path: "src/app/apple-icon.png", size: 180, maskable: true },
 ];
 
 for (const target of TARGETS) {

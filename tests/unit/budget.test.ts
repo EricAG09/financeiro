@@ -1,5 +1,8 @@
 import { describe, expect, it } from "vitest";
-import { calculateBudgetStatus, simulatePurchaseImpact } from "@/lib/calculations/budget";
+import {
+  calculateBudgetStatus,
+  simulatePurchaseImpact,
+} from "@/backend/domain/calculations/budget";
 
 describe("calculateBudgetStatus", () => {
   it("classifica orçamento dentro do planejado", () => {

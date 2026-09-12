@@ -54,36 +54,50 @@ A service role key ignora RLS. Jamais prefixe com `NEXT_PUBLIC_`.
 
 ## Estrutura
 
+Todo o código fica em `src/`, dividido em três camadas. A raiz guarda só
+configuração.
+
 ```
-app/              rotas, layouts, manifest, estados de erro/carregamento
-  (app)/          área autenticada, com AppShell e navegação inferior
-components/
-  ui/             primitivas do Design System (shadcn/ui + Radix)
-  layout/         AppShell, navegação, cabeçalho de página
-  finance/        saldo, resumo, lançamento, orçamento, ações rápidas
-  goals/          metas e progresso
-  assistant/      mensagens do agente
-  charts/         paleta e wrappers de gráfico
-  theme/          tema claro/escuro
-  providers/      React Query, tema, tooltip
-  pwa/            registro do service worker, aviso offline
-lib/
-  supabase/       clients browser, servidor e admin
-  auth/           sessão, guards, tradução de erros
-  calculations/   regra financeira pura e testada
-  finance/        aritmética em centavos
-  format/         moeda e data em pt-BR
-  validation/     blocos de schema e conversão de moeda
-  ai/             abstração de provedor e catálogo de ferramentas
-hooks/            conectividade, media query, instalação do PWA, hidratação
-types/            tipos de domínio e do banco
-schemas/          contratos Zod (cliente e servidor)
-constants/        rotas e catálogo de categorias
-config/           validação de env e metadados do produto
-supabase/         migrations (rascunho), seed, edge functions
-docs/             arquitetura, segurança, banco, IA, design system, PWA
-tests/            unitários, componentes, integração (RLS)
+src/
+├── app/                    roteamento (exigência do Next.js)
+│   ├── (frontend)/         telas
+│   │   ├── (app)/          área autenticada, com AppShell
+│   │   └── offline/        página servida pelo service worker
+│   ├── (backend)/api/      route handlers
+│   └── layout.tsx · error · loading · not-found · manifest · ícones
+│
+├── frontend/               ← o que desenha
+│   ├── components/{ui,layout,finance,goals,tasks,assistant,charts,theme,providers,pwa}
+│   ├── hooks/              conectividade, media query, instalação do PWA
+│   ├── lib/                `cn` e formatação de moeda/data em pt-BR
+│   └── styles/globals.css  tokens do Design System
+│
+├── backend/                ← servidor e regra de negócio
+│   ├── supabase/           clients: browser, servidor, admin, sessão de borda
+│   ├── auth/               sessão, guards, tradução de erros
+│   ├── ai/                 provider, catálogo de ferramentas, registry
+│   ├── domain/             dinheiro, datas, cálculos — puro e testado
+│   └── validation/         primitivas, parse de moeda, schemas Zod
+│
+├── shared/                 ← vocabulário comum, sem lógica
+│   ├── types/              tipos de domínio e do banco
+│   ├── constants/          rotas e catálogo de categorias
+│   └── config/             validação de env e metadados do produto
+│
+└── proxy.ts                borda: renova a sessão e emite a CSP
+
+public/     estáticos e service worker
+supabase/   migrations (rascunho), seed, edge functions
+docs/       arquitetura, segurança, banco, IA, design system, PWA
+tests/      unitários, componentes, integração (RLS)
+scripts/    geração de ícones
 ```
+
+Dentro de `app/`, os parênteses são _route groups_: organizam o diretório sem
+entrar na URL. `(frontend)/(app)/metas/page.tsx` responde em `/metas`.
+
+Cada camada tem um `README.md` com a sua regra —
+[`src/README.md`](src/README.md) explica quem pode importar quem.
 
 ## Fundamentos
 
